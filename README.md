@@ -22,6 +22,10 @@ Test Route
 |-------------|:-------------:|:------------------|:---------------:|
 |   READ      |      GET      | /test             | message         |
 
+### Attributions
+
+Express [500 Error Handler](https://expressjs.com/en/guide/error-handling.html)
+
 ### Install
 
 ```sh
