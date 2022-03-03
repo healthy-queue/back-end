@@ -35,13 +35,21 @@ npm install
 #### Usage
 
 ```sh
-npm run start
+npm run dev
 ```
 
-#### Run tests
+run a local development environment
 
 ```sh
-npm run test
+npm run prod
+```
+
+run a production environment on heroku psql database
+
+#### Run Unit Testing
+
+```sh
+npm run jest:test
 ```
 
 ## Author
