@@ -1,8 +1,6 @@
-'use strict';
+'use strict'
 
 module.exports = (err, req, res, next) => {
-  res.status(500).json({
-    status: 500,
-    message: err,
-  });
-};
+  if (res.headersSent) return next(err)
+  res.status(500)
+}

@@ -12,6 +12,20 @@
 
 ### ✨ [Demo](#blank)
 
+### ✨ [Dev Test Server](https://healthy-queue-test.herokuapp.com/)
+
+## Routes
+
+Test Route
+
+|   Action    |  HTTP Method  |      Resource     |    Response     |
+|-------------|:-------------:|:------------------|:---------------:|
+|   READ      |      GET      | /test             | message         |
+
+### Attributions
+
+Express [500 Error Handler](https://expressjs.com/en/guide/error-handling.html)
+
 ### Install
 
 ```sh
