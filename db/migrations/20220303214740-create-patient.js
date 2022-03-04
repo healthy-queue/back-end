@@ -9,12 +9,16 @@ module.exports = {
         autoIncrement: false,
         primaryKey: true
       },
+      isQueued:{
+        type: Sequelize.BOOLEAN,
+        allowNull:false
+      },
       priority: {
         type: Sequelize.INTEGER,
         allowNull:false
       },
       time_entered: {
-        type: Sequelize.STRING,
+        type: Sequelize.BIGINT,
         allowNull:false
       },
       createdAt: {

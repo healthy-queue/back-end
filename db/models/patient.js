@@ -6,10 +6,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull:false
     },
-    time_entered:{
-      type: DataTypes.STRING,
+    isQueued:{
+      type:DataTypes.BOOLEAN,
       allowNull:false
-    }
+    },
+    time_entered:{
+      type: DataTypes.BIGINT,
+      allowNull:false
+    },
   },{
     timestamps:true,
     tableName: 'patient',

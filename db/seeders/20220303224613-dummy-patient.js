@@ -8,21 +8,40 @@ module.exports = {
       {
         id: uuid(),
         priority: 1,
-        time_entered: Math.floor(Math.random()*100).toString(),
+        isQueued: true,
+        time_entered: Date.now(),
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuid(),
         priority: 2,
-        time_entered: Math.floor(Math.random()*1000).toString(),
+        isQueued: true,
+        time_entered: Date.now(),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuid(),
+        priority: 1,
+        isQueued: true,
+        time_entered: Date.now(),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: uuid(),
+        priority: 2,
+        isQueued: true,
+        time_entered: Date.now(),
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         id: uuid(),
         priority: 3,
-        time_entered: Math.floor(Math.random()*10000).toString(),
+        isQueued: true,
+        time_entered: Date.now(),
         createdAt: new Date(),
         updatedAt: new Date()
       }], 
