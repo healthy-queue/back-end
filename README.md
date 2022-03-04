@@ -48,14 +48,34 @@ npm install
 Starting up our dev environment
 `npm run dev` run a local development environment on your machine
 
+Install sequelize-cli dependency
+`npx sequelize-cli`
+
+Setup your env variables
+`touch .env`
+`npm i dotenv`
+
+CORS_ORIGIN=
+DATABASE_URL=
+DB_USERNAME=
+DB_PASSWORD=
+DB_DATABASE=
+DB_HOST=
+DB_DIALECT=
+DB_TEST_USERNAME=
+DB_TEST_PASSWORD=
+DB_TEST_DATABASE=
+DB_TEST_HOST=
+DB_TEST_DIALECT=
+PORT=
+
 Preparing our Database with a Patients Table
 `npm run db:create` create a database called healthyq
-`npm run gen:model` create a model called patient
-`npm run mig:stat` check current available migrations, up/down state
 `npm run mig:all`  run all available migrations and create patient table in the db
-`npm run gen:dummy` create dummy seed
 `npm run seed:dummy` add dummy patient into db patient table
 
+...if you have to undo a migration or seed file or check the state of a migration
+`npm run mig:stat` check current available migrations, up/down state
 `npm run mig:undo` undo last migration
 `npm run seed:undo` undo the current seed
 
@@ -66,7 +86,7 @@ Querying our Database
 #### Run Unit Testing
 
 ```sh
-npm run jest:test
+npm run test
 ```
 
 ## Author

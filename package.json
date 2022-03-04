@@ -8,11 +8,9 @@
     "prod": "NODE_ENV=production node index.js",
     "test": "jest --coverage --verbose",
     "db:create": "sequelize-cli db:create",
-    "gen:model": "sequelize-cli model:generate --name patient --attributes priority:integer,time_entered:date",
     "mig:stat": "sequelize-cli db:migrate:status",
     "mig:all": "sequelize-cli db:migrate",
     "mig:undo": "sequelize-cli db:migrate:undo",
-    "gen:dummy": "sequelize-cli seed:generate --name dummy-patient",
     "seed:dummy": "sequelize-cli db:seed:all",
     "seed:undo": "sequelize-cli db:seed:undo:all",
     "lint": "eslint ."
