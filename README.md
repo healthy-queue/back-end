@@ -49,7 +49,7 @@ Starting up our dev environment
 `npm run dev` run a local development environment on your machine
 
 Install sequelize-cli dependency
-`npx sequelize-cli`
+`npm i -D sequelize-cli`
 
 Setup your env variables
 `touch .env`
