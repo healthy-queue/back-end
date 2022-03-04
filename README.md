@@ -22,6 +22,17 @@ Test Route
 |-------------|:-------------:|:------------------|:---------------:|
 |   READ      |      GET      | /test             | message         |
 
+## Tables
+
+Patient
+
+| id (uuid) | priority (int) | time_entered (date) | createdAt (date) | updatedAt (date) |
+|:---------:|:--------------:|:-------------------:|:----------------:|:----------------:|
+  
+### Resources
+
+[sequelize-cli](https://sequelize.org/master/)
+
 ### Attributions
 
 Express [500 Error Handler](https://expressjs.com/en/guide/error-handling.html)
@@ -34,11 +45,41 @@ npm install
 
 #### Usage
 
-```sh
-npm run start
-```
+Starting up our dev environment
+`npm run dev` run a local development environment on your machine
 
-#### Run tests
+Setup your env variables
+`touch .env`
+
+CORS_ORIGIN=
+DATABASE_URL=
+DB_USERNAME=
+DB_PASSWORD=
+DB_DATABASE=
+DB_HOST=
+DB_DIALECT=
+DB_TEST_USERNAME=
+DB_TEST_PASSWORD=
+DB_TEST_DATABASE=
+DB_TEST_HOST=
+DB_TEST_DIALECT=
+PORT=
+
+Preparing our Database with a Patients Table
+`npm run db:create` create a database called healthyq
+`npm run mig:all`  run all available migrations and create patient table in the db
+`npm run seed:dummy` add dummy patient into db patient table
+
+...if you have to undo a migration or seed file or check the state of a migration
+`npm run mig:stat` check current available migrations, up/down state
+`npm run mig:undo` undo last migration
+`npm run seed:undo` undo the current seed
+
+Querying our Database
+
+... WIP
+
+#### Run Unit Testing
 
 ```sh
 npm run test
