@@ -4,7 +4,7 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 
-const routes = require('./routes')
+const patient_routes = require('./routes/patient.routes')
 const notFoundHandler = require('./handlers/404')
 const serverErrorHandler = require('./handlers/500')
 const corsOptions = {
@@ -15,7 +15,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 app.use(express.json())
-app.use(routes)
+app.use(patient_routes)
 app.use(notFoundHandler)
 app.use(serverErrorHandler)
 
