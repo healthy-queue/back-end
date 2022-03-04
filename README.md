@@ -48,12 +48,8 @@ npm install
 Starting up our dev environment
 `npm run dev` run a local development environment on your machine
 
-Install sequelize-cli dependency
-`npm i -D sequelize-cli`
-
 Setup your env variables
 `touch .env`
-`npm i dotenv`
 
 CORS_ORIGIN=
 DATABASE_URL=
