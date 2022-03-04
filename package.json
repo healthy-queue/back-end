@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon index.js",
     "prod": "NODE_ENV=production node index.js",
-    "test": "NODE_ENV=test node index.js",
-    "jest:test": "jest --coverage --verbose",
+    "test": "jest --coverage --verbose",
     "db:create": "sequelize-cli db:create",
     "gen:model": "sequelize-cli model:generate --name patient --attributes priority:integer,time_entered:date",
     "mig:stat": "sequelize-cli db:migrate:status",
