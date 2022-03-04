@@ -33,8 +33,8 @@ Patient Routes
 
 Patient
 
-| id (uuid) | priority (int) | time_entered (bigint) | createdAt (date) | updatedAt (date) |
-|:---------:|:--------------:|:-------------------:|:----------------:|:----------------:|
+| id (uuid) | priority (int) | isQueued (bool) |  time_entered (bigint) | createdAt (date) | updatedAt (date) |
+|:---------:|:--------------:|:---------------:|:----------------------:|:----------------:|:----------------:|
 
 ### Resources
 
