@@ -7,8 +7,15 @@
     "dev": "NODE_ENV=development nodemon index.js",
     "prod": "NODE_ENV=production node index.js",
     "test": "NODE_ENV=test node index.js",
-    "jest:test":"jest --coverage --verbose",
-    "db:create":"sequelize-cli db:create",
+    "jest:test": "jest --coverage --verbose",
+    "db:create": "sequelize-cli db:create",
+    "gen:model": "sequelize-cli model:generate --name patient --attributes priority:integer,time_entered:date",
+    "mig:stat": "sequelize-cli db:migrate:status",
+    "mig:all": "sequelize-cli db:migrate",
+    "mig:undo": "sequelize-cli db:migrate:undo",
+    "gen:dummy": "sequelize-cli seed:generate --name dummy-patient",
+    "seed:dummy": "sequelize-cli db:seed:all",
+    "seed:undo": "sequelize-cli db:seed:undo:all",
     "lint": "eslint ."
   },
   "repository": {
@@ -29,15 +36,16 @@
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.17.0",
-    "sqlite3": "^5.0.2",
-    "uuid": "^8.3.2"
+    "sqlite3": "^5.0.2"
   },
   "devDependencies": {
+    "@faker-js/faker": "^6.0.0-alpha.7",
     "eslint": "^8.10.0",
     "eslint-plugin-jest": "^26.1.1",
     "jest": "^27.5.1",
     "nodemon": "^2.0.15",
     "readme-md-generator": "^1.0.0",
-    "supertest": "^6.2.2"
+    "supertest": "^6.2.2",
+    "uuidv4": "^6.2.12"
   }
 }

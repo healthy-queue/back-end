@@ -47,7 +47,7 @@ Object.keys(db).forEach(modelName => {
 
 const db_connected = () => sequelize.authenticate()
   .then(() => {
-    return console.log(`db connected successfuly \n mode: ${process.env.NODE_ENV}`)
+    return console.log(`db connected successfuly \nmode: ${process.env.NODE_ENV}`)
   })
   .catch(err => {
     console.error('Unable to connect to the db:', err)

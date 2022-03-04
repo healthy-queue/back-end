@@ -22,6 +22,17 @@ Test Route
 |-------------|:-------------:|:------------------|:---------------:|
 |   READ      |      GET      | /test             | message         |
 
+## Tables
+
+Patient
+
+| id (uuid) | priority (int) | time_entered (date) | createdAt (date) | updatedAt (date) |
+|:---------:|:--------------:|:-------------------:|:----------------:|:----------------:|
+  
+### Resources
+
+[sequelize-cli](https://sequelize.org/master/)
+
 ### Attributions
 
 Express [500 Error Handler](https://expressjs.com/en/guide/error-handling.html)
@@ -34,17 +45,23 @@ npm install
 
 #### Usage
 
-```sh
-npm run dev
-```
+Starting up our dev environment
+`npm run dev` run a local development environment on your machine
 
-run a local development environment
+Preparing our Database with a Patients Table
+`npm run db:create` create a database called healthyq
+`npm run gen:model` create a model called patient
+`npm run mig:stat` check current available migrations, up/down state
+`npm run mig:all`  run all available migrations and create patient table in the db
+`npm run gen:dummy` create dummy seed
+`npm run seed:dummy` add dummy patient into db patient table
 
-```sh
-npm run prod
-```
+`npm run mig:undo` undo last migration
+`npm run seed:undo` undo the current seed
 
-run a production environment on heroku psql database
+Querying our Database
+
+... WIP
 
 #### Run Unit Testing
 
