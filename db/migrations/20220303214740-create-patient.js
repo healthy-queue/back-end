@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('patients', {
+    await queryInterface.createTable('patient', {
       id: {
         type: Sequelize.UUID,
         allowNull: false,
@@ -32,6 +32,6 @@ module.exports = {
     })
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('patients')
+    await queryInterface.dropTable('patient')
   }
 }

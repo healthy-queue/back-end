@@ -10,9 +10,7 @@
 
 ### 🏠 [Homepage](https://github.com/healthy-queue)
 
-### ✨ [Demo](#blank)
-
-### ✨ [Dev Test Server](https://healthy-queue-test.herokuapp.com/)
+### ✨ [Heroku Server](https://healthy-queue-test.herokuapp.com/)
 
 ## Routes
 
@@ -20,15 +18,24 @@ Test Route
 
 |   Action    |  HTTP Method  |      Resource     |    Response     |
 |-------------|:-------------:|:------------------|:---------------:|
-|   READ      |      GET      | /test             | message         |
+|   READ      |      GET      | /welcome          | message         |
+
+Patient Routes
+|   Action    |  HTTP Method  |      Resource     |    Response      |
+|:------------|:--------------|:------------------|:----------------:|
+|  READ ALL   |      GET      | /patients         | all records      |
+|  READ ONE   |      GET      | /patients/:uuid   | one record       |
+|  CREATE ONE |      POST     | /patients         | create one record|
+|  UPDATE ONE |      PUT      | /patients/:uuid   | update one record|
+|  DELETE ONE |      DELETE   | /patients/:uuid   | delete one record|
 
 ## Tables
 
 Patient
 
-| id (uuid) | priority (int) | time_entered (date) | createdAt (date) | updatedAt (date) |
-|:---------:|:--------------:|:-------------------:|:----------------:|:----------------:|
-  
+| id (uuid) | priority (int) | isQueued (bool) |  time_entered (bigint) | createdAt (date) | updatedAt (date) |
+|:---------:|:--------------:|:---------------:|:----------------------:|:----------------:|:----------------:|
+
 ### Resources
 
 [sequelize-cli](https://sequelize.org/master/)
