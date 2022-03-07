@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon index.js",
     "prod": "NODE_ENV=production node index.js",
-    "test": "jest --coverage --verbose",
+    "test": "jest --coverage --verbose --forceExit",
     "db:create": "sequelize-cli db:create",
     "mig:stat": "sequelize-cli db:migrate:status",
     "mig:all": "sequelize-cli db:migrate",
