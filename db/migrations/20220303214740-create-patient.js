@@ -1,5 +1,6 @@
 'use strict'
 /* eslint-disable no-unused-vars */
+//db/migrations/20220303214740-create-patient.js
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('patient', {
