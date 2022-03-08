@@ -36,6 +36,10 @@ Patient
 | id (uuid) | priority (int) | isQueued (bool) |  time_entered (bigint) | createdAt (date) | updatedAt (date) |
 |:---------:|:--------------:|:---------------:|:----------------------:|:----------------:|:----------------:|
 
+Patient_Info
+| id (uuid) | name (int) | DOB (bool) |  patient_id  | createdAt (date) | updatedAt (date) |
+|:---------:|:----------:|:----------:|:------------:|:----------------:|:----------------:|
+
 ### Resources
 
 [sequelize-cli](https://sequelize.org/master/)
