@@ -20,5 +20,13 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName:true
   })
 
+  Patient.associate = ({ patient_info }) => {
+    Patient.hasOne(patient_info,{
+      foreignKey: { name: 'patient_id' },
+      onDelete: 'CASCADE', 
+      onUpdate:'CASCADE' 
+    })
+  }
+
   return Patient
 }
