@@ -4,8 +4,8 @@
   "description": "The backend for the healthy queue system",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development nodemon index.js",
-    "prod": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development nodemon index.js",
+    "start": "NODE_ENV=production node index.js",
     "test": "jest --coverage --verbose --forceExit",
     "db:create": "sequelize-cli db:create",
     "mig:stat": "sequelize-cli db:migrate:status",
