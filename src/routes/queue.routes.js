@@ -17,10 +17,8 @@ const redisOptions = process.env.NODE_ENV === 'production'
     },
   }
   :{}
-
 const redis = new Redis(REDIS_URL,redisOptions)
-
-redis.on('error', (e)=> console.log('err',e))
+redis.on('error', (e)=> { console.log('err',e); process.exit(1)} )
 
 const queue = (client) => {
   return{
@@ -30,7 +28,6 @@ const queue = (client) => {
     range: async (key) => await client.lrange(key,0,-1)
   }
 }
- 
 queue_routes.get('/queue/all', async (req,res)=>{
   const { range } = queue(redis)
   try{
