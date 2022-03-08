@@ -1,8 +1,26 @@
 const express = require('express')
 const queue_routes = express.Router()
 const Redis = require('ioredis')
-const redis = new Redis()
+// let REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379'
 
+let REDIS_URL = process.env.NODE_ENV === 'production'
+  ? process.env.REDIS_URL
+  : 'redis://127.0.0.1:6379'
+
+const redisOptions = process.env.NODE_ENV === 'production'
+  ? {
+    tls: {
+      rejectUnauthorized: false,    
+      requestCert: true,
+      agent: false
+    },
+  }
+  :{}
+
+const redis = new Redis( REDIS_URL ,redisOptions)
+
+console.log(process.env.NODE_ENV)
+ 
 const queue = (client) => {
   return{
 
@@ -11,7 +29,7 @@ const queue = (client) => {
     range: async (key) => await client.lrange(key,0,-1)
   }
 }
-
+ 
 queue_routes.get('/queue/all', async (req,res)=>{
   const { range } = queue(redis)
   try{
