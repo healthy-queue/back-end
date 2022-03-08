@@ -5,8 +5,9 @@ const redis = new Redis()
 
 const queue = (client) => {
   return{
+
     push: async (key,val) => await client.rpush(key,val),
-    pop: async (key) => await client.rpop(key),
+    pop: async (key) => await client.lpop(key),
     range: async (key) => await client.lrange(key,0,-1)
   }
 }
@@ -31,7 +32,6 @@ queue_routes.get('/queue/which', async (req,res)=>{
     res.status(500).send({err:e,range_rej})
   }
 })
-
 queue_routes.post('/queue/push', async (req,res)=>{
   const { q_name,patient } = req.body
   const { push } = queue(redis)
@@ -43,7 +43,6 @@ queue_routes.post('/queue/push', async (req,res)=>{
     res.status(500).send({err:e,push_rej})
   }
 })
-
 queue_routes.post('/queue/pop', async (req,res)=>{
   const { pop } = queue(redis)
   const { q_name } = req.body

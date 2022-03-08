@@ -25,17 +25,18 @@ patient_routes.get('/patients/:uuid', async (req,res) => {
   try{
     if(!patient || !patient_info) throw new Error({msg: 'model undefined'})
     const { uuid } = req.params
-    const target_pat = await patient.findOne({ where:{ id:uuid }, includes:[patient_info] })
+    const target_pat = await patient.findOne({ where:{ id:uuid }, include:[patient_info] })
     res.status(200).send(target_pat)
   }catch(e){
     res.status(404).send(e)
   }
 })
 patient_routes.post('/patients', async (req,res) => {
+  //one patient no patinent_info
   try{
-    const { patient, patient_info } = db
+    const { patient } = db
     const { uuid,priority,isQueued,time_entered } = req.body
-    if(!patient || !patient_info) throw new Error({ msg: 'model undefined' })
+    if( !patient ) throw new Error({ msg: 'model undefined' })
     const newPat = await patient.create({id:uuid, priority,isQueued,time_entered})
     res.status(200).send({ newPat })
   }catch(e){
@@ -46,7 +47,6 @@ patient_routes.post('/patients-info', async (req,res) => {
   try{
     const { patient_info } = db
     if(!patient_info) throw new Error({ msg: 'model undefined' })
-    console.log(req.body)
     const newPatInfo = await patient_info.create(req.body)
     res.status(200).send({newPatInfo})
   }catch(e){
