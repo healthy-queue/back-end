@@ -1,24 +1,27 @@
 const express = require('express')
 const queue_routes = express.Router()
 const Redis = require('ioredis')
-// let REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379'
 
-// let REDIS_URL = process.env.NODE_ENV === 'production'
-//   ? process.env.REDIS_URL
-//   : 'redis://127.0.0.1:6379'
+let REDIS_URL = process.env.REDIS_URL || 'redis://127.0.0.1:6379'
 
-// const redisOptions = process.env.NODE_ENV === 'production'
-//   ? {
-//     tls: {
-//       rejectUnauthorized: false,    
-//       requestCert: true,
-//       agent: false
-//     },
-//   }
-//   :{}
+REDIS_URL = process.env.NODE_ENV === 'production'
+  ? process.env.REDIS_URL
+  : 'redis://127.0.0.1:6379'
 
-const redis = new Redis()
- 
+const redisOptions = process.env.NODE_ENV === 'production'
+  ? {
+    tls: {
+      rejectUnauthorized: false,    
+      requestCert: true,
+      agent: false
+    },
+  }
+  :{}
+
+const redis = new Redis(REDIS_URL,redisOptions)
+
+redis.on('error', (e)=> console.log('err',e))
+
 const queue = (client) => {
   return{
 
