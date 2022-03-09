@@ -2,8 +2,9 @@ const express = require('express')
 const { db } = require('../../db/models/index')
 const patient_routes = express.Router()
 
-patient_routes.get('/welcome', async (req,res) => {
+patient_routes.get('/', async (req,res) => {
   try{
+    console.log('hello heroku')
     const message = 'HOLA, Welcome to Healthy Queue 👋'
     res.status(200).send(message)
   }catch(e){
