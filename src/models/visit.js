@@ -39,4 +39,4 @@ const visitModel = (sequelize, DataTypes) => {
   return visit
 }
 
-module.exports = visitModel;
+module.exports = visitModel
