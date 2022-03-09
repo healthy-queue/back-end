@@ -17,7 +17,8 @@ module.exports = {
   },
   "production": {
     "use_env_variable": process.env.DATABASE_URL,
-    "dialect": "postgres",
-    "protocol": 'postgres',
+    
+    "host": 'ec2-3-222-204-187.compute-1.amazonaws.com',
+
   }
 }

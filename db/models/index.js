@@ -15,6 +15,9 @@ if (config.use_env_variable) {
   const { use_env_variable } = config
   let sequelizeOptions = process.env.NODE_ENV === 'production'
     ? {
+      use_env_variable,
+      dialect: 'postgres',
+      protocol: 'postgres',
       dialectOptions: {
         ssl: {
           require: true,
@@ -23,7 +26,9 @@ if (config.use_env_variable) {
       },
     }
     : {}
-
+  console.log('##',use_env_variable)
+  console.log('##',process.env.DATABASE_URL)
+  console.log('@@',sequelizeOptions)
   sequelize = new Sequelize(use_env_variable, sequelizeOptions)
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config)
