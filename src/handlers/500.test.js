@@ -2,11 +2,11 @@
 
 const { app } = require('../server')
 const supertest = require('supertest')
-const mock_req = supertest(app)
+const request = supertest(app)
 
 describe('Internal Server Error Handling', () => {
-  xit('should return 500 when db query fails', async () => {
-    const response = await mock_req.get('/bad')
+  it("should return 500 on /bad", async () => {
+    const response = await request.get('/bad')
     expect(response.status).toBe(500)
   })
 })
