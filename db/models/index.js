@@ -8,7 +8,10 @@ const env = process.env.NODE_ENV || 'development'
 const config = require(__dirname + '/../config/config.js')[env]
 const db = {}
 
+const DATABASE_URL = process.env.NODE_ENV === 'test' ? 'sqlite:memory' : process.env.DATABASE_URL
+
 let sequelize
+console.log('config',config.use_env_variable)
 
 if (config.use_env_variable) {
 
@@ -26,10 +29,11 @@ if (config.use_env_variable) {
       },
     }
     : {}
-  console.log('##',use_env_variable)
+  console.log('use env var',use_env_variable)
+  console.log('databaseurl',DATABASE_URL)
   console.log('##',process.env.DATABASE_URL)
-  console.log('@@',sequelizeOptions)
-  sequelize = new Sequelize(use_env_variable, sequelizeOptions)
+  console.log('sequelizeopts',sequelizeOptions)
+  sequelize = new Sequelize(DATABASE_URL, sequelizeOptions)
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config)
 }
