@@ -1,7 +1,7 @@
 const express = require('express')
 const sanityRoutes = express.Router()
 
-sanityRoutes.get('/welcome', async (req,res, next) => {
+sanityRoutes.get('/welcome', async (req, res, next) => {
   try{
     const message = 'HOLA, Welcome to Healthy Queue 👋'
     res.status(200).send(message)
