@@ -1,6 +1,6 @@
 const express = require('express')
 const visitRoutes = express.Router()
-const { visits, patients } = require('../models/index');
+const { visits, patients } = require('../models/index')
 
 visitRoutes.get('/visits', async (req, res, next) => {
   try{
