@@ -1,77 +1,76 @@
 const express = require('express')
-const { db } = require('../../db/models/index')
-const patient_routes = express.Router()
+const patientRoutes = express.Router()
+const { patients } = require('../models/index');
 
-patient_routes.get('/welcome', async (req,res) => {
+patientRoutes.get('/patients', async (req, res, next) => {
   try{
-    const message = 'HOLA, Welcome to Healthy Queue 👋'
-    res.status(200).send(message)
-  }catch(e){
-    console.error('err:',e)
+    const allPatients = await patients.findAll()
+    res.status(200).send(allPatients)
+  } catch(e) {
+    console.error(e.message)
+  } finally {
+    next()
   }
-})
-patient_routes.get('/patients', async (req,res) => {
-  const { patient, patient_info } = db
-  try{
-    if(!patient || !patient_info) throw new Error({msg: 'model undefined'})
-    const all_patients = await patient.findAll({include: [patient_info]})
-    res.status(200).send(all_patients)
-  }catch(e){
-    res.status(404).send(e)
-  }
-})
-patient_routes.get('/patients/:uuid', async (req,res) => {
-  const { patient, patient_info } = db
-  try{
-    if(!patient || !patient_info) throw new Error({msg: 'model undefined'})
-    const { uuid } = req.params
-    const target_pat = await patient.findOne({ where:{ id:uuid }, include:[patient_info] })
-    res.status(200).send(target_pat)
-  }catch(e){
-    res.status(404).send(e)
-  }
-})
-patient_routes.post('/patients', async (req,res) => {
-  //one patient no patinent_info
-  try{
-    const { patient } = db
-    const { uuid,priority,isQueued,time_entered } = req.body
-    if( !patient ) throw new Error({ msg: 'model undefined' })
-    const newPat = await patient.create({id:uuid, priority,isQueued,time_entered})
-    res.status(200).send({ newPat })
-  }catch(e){
-    res.status(404).send(e)
-  }
-})
-patient_routes.post('/patients-info', async (req,res) => {
-  try{
-    const { patient_info } = db
-    if(!patient_info) throw new Error({ msg: 'model undefined' })
-    const newPatInfo = await patient_info.create(req.body)
-    res.status(200).send({newPatInfo})
-  }catch(e){
-    res.status(404).send(e)
-  }
-})
-patient_routes.put('/patients/:uuid', async (req,res) => {
-  try{
-    const { patient } = db
-    if(!patient) throw new Error({ msg: 'model undefined' })
-    const { uuid } = req.params
-    const new_pat = await patient.update(req.body,{ where:{ id:uuid }})
-    res.status(200).send(new_pat)
-  }catch(e){
-    res.status(404).send(e)
-  }
-})
-patient_routes.delete('/patients/:uuid', async (req,res) => {
-  try{
-    const { patient } = db
-    if(!patient) throw new Error({ msg: 'model undefined' })
-    const { uuid } = req.params
-    const deleted_pat = await patient.destroy({ where:{ id:uuid }})
-    res.status(200).send({deleted_pat})
-  }catch(e){ res.status(404).send(e) }
 })
 
-module.exports = patient_routes
+patientRoutes.get('/patient/:id', async (req, res, next) => {
+  try{
+    const { id } = req.params
+    const targetPatient = await patients.findOne({ where:{ id:id }})
+    res.status(200).send(targetPatient)
+  } catch(e) {
+    console.error(e.message)
+  } finally {
+    next()
+  }
+})
+
+patientRoutes.post('/patient', async (req, res, next) => {
+  try{
+    const newPatient = await patients.create(req.body)
+    res.status(200).send({ newPatient })
+  } catch(e) {
+    console.error(e.message)
+  } finally {
+    next()
+  }
+})
+
+patientRoutes.put('/patient/:id', async (req, res, next) => {
+  try{
+    const { id } = req.params
+    const updatedPatient = await patients.update(req.body, { where:{ id:id }})
+    res.status(200).send(updatedPatient)
+  } catch(e) {
+    console.error(e.message)
+  } finally {
+    next()
+  }
+})
+
+patientRoutes.patch('/patient/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const updatedPatient = await patients.patch(req.body, { where: { id: id}})
+    res.status(200).send(updatedPatient)
+  } catch(e) {
+    console.error(e.message)
+  } finally {
+    next()
+  }
+})
+
+// TODO: make this a soft delete
+patientRoutes.delete('/patient/:id', async (req, res, next) => {
+  try{
+    const { id } = req.params
+    const numDeleted = await patients.destroy({ where:{ id:id }})
+    res.status(204).send(numDeleted)
+  } catch(e) { 
+    console.error(e.message)
+  } finally {
+    next()
+  }
+})
+
+module.exports = patientRoutes
