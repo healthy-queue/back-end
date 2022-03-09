@@ -19,7 +19,8 @@ const redisOptions = process.env.NODE_ENV === 'production'
   :{}
 
 const redis = new Redis(REDIS_URL,redisOptions)
-redis.on('error', (e)=> { console.log('err',e); process.exit(1)} )
+// redis.on('error', (e)=> { console.log('err',e); process.exit(1)} )
+redis.on('error', (e)=> console.log('err',e))
   
 console.log(REDIS_URL,redisOptions)
 
