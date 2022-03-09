@@ -15,8 +15,8 @@
     "url": "git+https://github.com/healthy-queue/back-end.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Healthy Queue",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/healthy-queue/back-end/issues"
   },
@@ -38,8 +38,7 @@
     "nodemon": "^2.0.15",
     "readme-md-generator": "^1.0.0",
     "sequelize-cli": "^6.4.1",
-    "sqlite3": "^5.0.2",
-    "supertest": "^6.2.2",
-    "uuidv4": "^6.2.12"
+    "sqlite3": "npm:@vscode/sqlite3@^5.0.7",
+    "supertest": "^6.2.2"
   }
 }
