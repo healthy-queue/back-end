@@ -115,3 +115,8 @@ Give a ⭐️ if this project helped you!
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+
+
+### Sources
+
+[Regex for Email Address](https://handyopinion.com/utility-method-to-get-all-email-addresses-from-a-string-in-java/)
