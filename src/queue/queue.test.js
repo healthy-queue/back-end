@@ -20,7 +20,7 @@ describe('Given a Queue', () => {
       expect(emptyQueue.print()).toEqual([])
     })
 
-    it('Then should be able tp print populated queue', () => {
+    it('Then should be able to print populated queue', () => {
       expect(populatedQueue.print()).toEqual([1, 2, 3, 4, 5])
     })
   })
@@ -104,7 +104,7 @@ describe('Given a Queue', () => {
 
     it('Then should remove middle node by value in multi entry queue', () => {
       populatedQueue.removeNode(2)
-      // expect(populatedQueue.head).toEqual({next: {next: { next: { value: 4, next: }, value: 3}, value: 1})
+      expect(populatedQueue.head.next.value).toEqual(3)
       expect(populatedQueue.tail).toEqual({next: null, value: 5})
       expect(populatedQueue.length).toEqual(4)
     })
