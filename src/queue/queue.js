@@ -90,6 +90,7 @@ class Queue {
 
         // If it's not the tail or the head
         else if(curr !== this.head && curr !== this.tail) {
+          prev.next = curr.next
           curr = curr.next
         }
       }
