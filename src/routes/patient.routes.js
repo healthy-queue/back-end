@@ -16,7 +16,7 @@ patientRoutes.get('/patients', async (req, res, next) => {
 patientRoutes.get('/patient/:id', async (req, res, next) => {
   try{
     const { id } = req.params
-    const targetPatient = await patients.findOne({ where:{ id:id }})
+    const targetPatient = await patients.findOne({ where:{ id }})
     res.status(200).send(targetPatient)
   } catch(e) {
     console.error(e.message)
@@ -28,7 +28,7 @@ patientRoutes.get('/patient/:id', async (req, res, next) => {
 patientRoutes.post('/patient', async (req, res, next) => {
   try{
     const newPatient = await patients.create(req.body)
-    res.status(200).send({ newPatient })
+    res.status(200).send(newPatient)
   } catch(e) {
     console.error(e.message)
   } finally {
@@ -39,19 +39,7 @@ patientRoutes.post('/patient', async (req, res, next) => {
 patientRoutes.put('/patient/:id', async (req, res, next) => {
   try{
     const { id } = req.params
-    const updatedPatient = await patients.update(req.body, { where:{ id:id }})
-    res.status(200).send(updatedPatient)
-  } catch(e) {
-    console.error(e.message)
-  } finally {
-    next()
-  }
-})
-
-patientRoutes.patch('/patient/:id', async (req, res, next) => {
-  try {
-    const { id } = req.params
-    const updatedPatient = await patients.patch(req.body, { where: { id: id}})
+    const updatedPatient = await patients.update(req.body, { where:{ id }})
     res.status(200).send(updatedPatient)
   } catch(e) {
     console.error(e.message)
@@ -64,8 +52,8 @@ patientRoutes.patch('/patient/:id', async (req, res, next) => {
 patientRoutes.delete('/patient/:id', async (req, res, next) => {
   try{
     const { id } = req.params
-    const numDeleted = await patients.destroy({ where:{ id:id }})
-    res.status(204).send(numDeleted)
+    const numDeleted = await patients.destroy({ where:{ id }})
+    res.status(204).send({ numDeleted })
   } catch(e) { 
     console.error(e.message)
   } finally {
