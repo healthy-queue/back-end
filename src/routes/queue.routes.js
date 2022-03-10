@@ -1,21 +1,33 @@
 const express = require('express')
 const queue_routes = express.Router()
 
-// const Redis = require('ioredis')
-// const redis = new Redis()
+const healthyQueue = require('../queue/patient-queue')
 
-const { red } = require('../queue/patient-queue')
-const { yellow } = require('../queue/patient-queue')
-const { green } = require('../queue/patient-queue');
+queue_routes.get('/queue', async(req, res) => {
+  res.status(200).send(healthyQueue)
+})
 
-const queue = (client) => {
-  return {
+queue_routes.post('/queue/enqueue', async (req, res) => {
 
-    push: async (key, val) => await client.rpush(key, val),
-    pop: async (key) => await client.lpop(key),
-    range: async (key) => await client.lrange(key, 0, -1)
-  }
-}
+  let priority = req.body.queue
+  let patient = req.body.patient
+
+  healthyQueue[priority].enqueue(patient)
+
+  // emit an event
+  res.status(200).send(healthyQueue)
+})
+
+queue_routes.post('/queue/dequeue', async (req, res) => {
+
+  let queue = req.body.queue
+  let dequeuedPatient = healthyQueue[queue].dequeue()
+
+  // here add dequeued patient to an ER board (in database)
+  // let acceptedPatient = erBoard.create(dequeuedPatient)
+
+  res.status(200).send(healthyQueue)
+})
 
 queue_routes.get('/queue/redenqueue', async (req, res) => {
 
@@ -24,7 +36,6 @@ queue_routes.get('/queue/redenqueue', async (req, res) => {
 })
 
 queue_routes.get('/queue/reddequeue', async (req, res) => {
-
   red.dequeue()
   res.status(200).send(red)
 })

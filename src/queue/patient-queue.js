@@ -48,4 +48,10 @@ const red = new Queue();
 const yellow = new Queue();
 const green = new Queue();
 
-module.exports = {red, yellow, green}
+const healthyQueue = {
+  red,
+  yellow,
+  green
+}
+
+module.exports = healthyQueue
