@@ -1,57 +1,97 @@
 const express = require('express')
 const queue_routes = express.Router()
-const Redis = require('ioredis')
-const redis = new Redis()
+
+// const Redis = require('ioredis')
+// const redis = new Redis()
+
+const { red } = require('../queue/patient-queue')
+const { yellow } = require('../queue/patient-queue')
+const { green } = require('../queue/patient-queue');
 
 const queue = (client) => {
-  return{
+  return {
 
-    push: async (key,val) => await client.rpush(key,val),
+    push: async (key, val) => await client.rpush(key, val),
     pop: async (key) => await client.lpop(key),
-    range: async (key) => await client.lrange(key,0,-1)
+    range: async (key) => await client.lrange(key, 0, -1)
   }
 }
 
-queue_routes.get('/queue/all', async (req,res)=>{
+queue_routes.get('/queue/redenqueue', async (req, res) => {
+
+  red.enqueue({ name: 'Ayrat', age: Math.floor(Math.random() * 100) })
+  res.status(200).send(red)
+})
+
+queue_routes.get('/queue/reddequeue', async (req, res) => {
+
+  red.dequeue()
+  res.status(200).send(red)
+})
+
+queue_routes.get('/queue/yellowenqueue', async (req, res) => {
+
+  yellow.enqueue({ name: 'Lorenzo', age: Math.floor(Math.random() * 100) })
+  res.status(200).send(yellow)
+})
+
+queue_routes.get('/queue/yellowdequeue', async (req, res) => {
+
+  yellow.dequeue()
+  res.status(200).send(yellow)
+})
+
+queue_routes.get('/queue/redtoyellow', async (req, res) => {
+
+  let redPatient = red.dequeue()
+  if (redPatient) {
+    yellow.enqueue(redPatient)
+  }
+  res.status(200).send(yellow)
+})
+
+//==========================================================================
+
+queue_routes.get('/queue/all', async (req, res) => {
   const { range } = queue(redis)
-  try{
-    const all_res = await Promise.all([range('red'),range('yellow'),range('green')]).then(res => res).catch(e => e)
-    res.status(200).send({all_res})
-  }catch(e){
-    res.status(500).send({ err:e })
+  try {
+    const all_res = await Promise.all([range('red'), range('yellow'), range('green')]).then(res => res).catch(e => e)
+    res.status(200).send({ all_res })
+  } catch (e) {
+    res.status(500).send({ err: e })
   }
 })
-queue_routes.get('/queue/which', async (req,res)=>{
+queue_routes.get('/queue/which', async (req, res) => {
   const { priority } = req.query
   const { range } = queue(redis)
-  try{
+  try {
     const range_res = await Promise.resolve(range(priority)).then(res => res)
-    res.status(200).send({range_res})
-  }catch(e){
+    res.status(200).send({ range_res })
+  } catch (e) {
     const range_rej = await Promise.resolve(range(priority)).then(res => res)
-    res.status(500).send({err:e,range_rej})
+    res.status(500).send({ err: e, range_rej })
   }
 })
-queue_routes.post('/queue/push', async (req,res)=>{
-  const { q_name,patient } = req.body
+queue_routes.post('/queue/push', async (req, res) => {
+  const { q_name, patient } = req.body
   const { push } = queue(redis)
-  try{
-    const push_res = await Promise.resolve(push(q_name,patient)).then(res => res)
-    res.status(202).send({push_res})
-  }catch(e){
-    const push_rej = await Promise.reject(push(q_name,patient)).then(res => res)
-    res.status(500).send({err:e,push_rej})
+  try {
+    const push_res = await Promise.resolve(push(q_name, patient)).then(res => res)
+    res.status(202).send({ push_res })
+  } catch (e) {
+    const push_rej = await Promise.reject(push(q_name, patient)).then(res => res)
+    res.status(500).send({ err: e, push_rej })
   }
 })
-queue_routes.post('/queue/pop', async (req,res)=>{
+queue_routes.post('/queue/pop', async (req, res) => {
   const { pop } = queue(redis)
   const { q_name } = req.body
-  try{
+  try {
     const pop_res = await Promise.resolve(pop(q_name)).then(res => res)
-    res.status(202).send({pop_res})
-  }catch(e){
+    res.status(202).send({ pop_res })
+  } catch (e) {
     const pop_rej = await Promise.reject(pop(q_name)).then(res => res)
-    res.status(500).send({err:e,pop_rej})
+    res.status(500).send({ err: e, pop_rej })
   }
 })
 
