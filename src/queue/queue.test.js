@@ -104,7 +104,9 @@ describe('Given a Queue', () => {
 
     it('Then should remove middle node by value in multi entry queue', () => {
       populatedQueue.removeNode(2)
+      expect(populatedQueue.head.value).toEqual(1)
       expect(populatedQueue.head.next.value).toEqual(3)
+      expect(populatedQueue.head.next.next.value).toEqual(4)
       expect(populatedQueue.tail).toEqual({next: null, value: 5})
       expect(populatedQueue.length).toEqual(4)
     })
