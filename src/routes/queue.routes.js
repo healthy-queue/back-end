@@ -1,16 +1,6 @@
 const express = require('express')
 const queue_routes = express.Router()
-// const Redis = require('ioredis')
-// const redis = new Redis()
-
-// const queue = (client) => {
-//   return{
-
-//     push: async (key,val) => await client.rpush(key,val),
-//     pop: async (key) => await client.lpop(key),
-//     range: async (key) => await client.lrange(key,0,-1)
-//   }
-// }
+/* eslint-disable no-undef */
 
 queue_routes.get('/queue/all', async (req,res)=>{
   const { range } = queue(redis)

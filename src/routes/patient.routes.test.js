@@ -1,5 +1,4 @@
 const supertest = require('supertest')
-// const { faker } = require('@faker-js/faker')
 const { app } = require('../server')
 const { db, patients } = require('../models/index')
 const request = supertest(app)
@@ -24,7 +23,6 @@ beforeAll( async () => {
   ]
   )
 })
-
 afterAll( async () => await db.drop() )
 
 describe('When given GET on /patients', ()=> {
