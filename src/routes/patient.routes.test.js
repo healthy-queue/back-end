@@ -10,15 +10,15 @@ beforeAll( async () => {
       id: 1,
       first_name: 'Thor',
       last_name: 'Odinson',
-      createdAt: Date.now(),
-      updatedAt: Date.now()
+      createdAt: new Date('2022-03-10T03:26:05.411Z'),
+      updatedAt: new Date('2022-03-10T03:26:05.411Z')
     },
     {
       id: 2,
       first_name: 'Black',
       last_name: 'Widow',
-      createdAt: Date.now(),
-      updatedAt: Date.now()
+      createdAt: new Date('2022-03-10T03:26:05.411Z'),
+      updatedAt: new Date('2022-03-10T03:26:05.411Z')
     }
   ]
   )
