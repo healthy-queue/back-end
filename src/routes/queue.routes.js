@@ -1,5 +1,6 @@
 const express = require('express')
 const queue_routes = express.Router()
+
 const healthyQueue = require('../queue/patient-queue')
 
 queue_routes.get('/queue', async (req, res) => {
