@@ -57,4 +57,4 @@ const patientModel = (sequelize, DataTypes) => {
   return patient
 }
 
-module.exports = patientModel;
+module.exports = patientModel

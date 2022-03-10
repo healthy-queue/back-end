@@ -44,9 +44,9 @@ class Queue {
   }
 }
 
-const red = new Queue();
-const yellow = new Queue();
-const green = new Queue();
+const red = new Queue()
+const yellow = new Queue()
+const green = new Queue()
 
 const healthyQueue = {
   red,
