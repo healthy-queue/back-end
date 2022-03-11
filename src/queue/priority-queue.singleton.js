@@ -8,30 +8,32 @@ module.exports = {
     'yellow': new Queue(),
     'green': new Queue(),
   },
-  checks(value, targetQueue) {
-    if(!value.id) throw new Error('No Id Provided')
+  checks(id, targetQueue) {
+    if(id === undefined) throw new Error('No Id Provided')
     if(!targetQueue) throw new Error ('No Target Queue Provided')
     if(!Object.keys(this.queues).includes(targetQueue)) throw new Error('Not Valid Target Queue')
   },
-  // Adds element to the end of the target queue
-  changePriority(id, targetQueue, increasePriority) {
-    this.checks(value, targetQueue)
-    if(increasePriority === undefined) throw new Error('Should true or false to increase Priority')
+  // Moves an element to the end or beginning of the target queue
+  changePriority(id, targetQueue, toTail = true) {
+    this.checks(id, targetQueue)
+    if(this.queues['red'].length +  this.queues['yellow'].length + this.queues['green'].length === 0) {
+      throw new Error('All Queues Empty')
+    }
+    if(typeof toTail !== 'boolean') throw new Error('toTail should be a boolean')
     for(const i in this.queues) {
-      for(const j of this.queues[i]) {
-        if(j.id === id) {
-          if(increasePriority) {
-            this.queues[targetQueue].enqueue(j) // Add the item to the end of the queue
-          } else {
-            this.queues[targetQueue].addToFront(j) // Add the item to the front of the queue
-          }
-          this.queues[i].removeNode(id) // Remove the item from queue it was previously in
+      // Remove the item from queue it was previously in
+      let result = this.queues[i].removeNode(id) 
+      if(result) {
+        if(toTail) {
+          this.queues[targetQueue].enqueue(result) // Add the item to the end of the queue
+        } else {
+          this.queues[targetQueue].addToFront(result) // Add the item to the front of the queue
         }
       }
     }
   },
   enqueueItem(value, targetQueue) {
-    this.checks(value, targetQueue)
+    this.checks(value.id, targetQueue)
     return this.queues[targetQueue].enqueue(value)
   },
   dequeueItem(value, targetQueue) {
