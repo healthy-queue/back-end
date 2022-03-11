@@ -58,15 +58,15 @@ class Queue {
   }
 
   // O(n)
-  removeNode(value) {
-    if (value === undefined) throw new Error('Value Required')
+  removeNode(id) {
+    if (id === undefined) throw new Error('Value Required')
     if (!this.head) return null // If nothing in queue return null
     let curr = this.head
     let prev = null
     let result = null
     while(curr) {
       // If node value is a match
-      if(curr.value === value) {
+      if(curr.value.id === id) {
         // Save value to result and decrement length
         result = curr.value
         this.length--
