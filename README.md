@@ -120,3 +120,7 @@ _This README was generated with ❤️ by [readme-md-generator](https://github.c
 ### Sources
 
 [Regex for Email Address](https://handyopinion.com/utility-method-to-get-all-email-addresses-from-a-string-in-java/)
+
+[How to Mock process.env in Jest](https://www.webtips.dev/how-to-mock-processenv-in-jest)
+
+[Queue – Linked List Implementation](https://www.geeksforgeeks.org/queue-linked-list-implementation/)
