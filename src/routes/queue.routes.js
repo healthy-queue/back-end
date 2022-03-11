@@ -1,7 +1,15 @@
 const express = require('express')
 const queue_routes = express.Router()
 /* eslint-disable no-undef */
-const healthyQueue = require('../queue/queue')
+const Queue = require('../queue/queue')
+
+const red = new Queue()
+const yellow = new Queue()
+const green = new Queue()
+
+const healthyQueue = {
+  red, yellow, green
+}
 
 
 queue_routes.get('/queue', async (req, res) => {

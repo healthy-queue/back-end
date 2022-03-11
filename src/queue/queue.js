@@ -49,7 +49,7 @@ class Queue {
 
   // O(1)
   addToFront(value) {
-    if (!this.head) {
+    if(!this.head){
       this.head = this.tail = new Node(value)
     } else {
       this.head = new Node(value, this.head)
@@ -64,32 +64,32 @@ class Queue {
     let curr = this.head
     let prev = null
     let result = null
-    while (curr) {
+    while(curr) {
       // If node value is a match
-      if (curr.value === value) {
+      if(curr.value === value) {
         // Save value to result and decrement length
         result = curr.value
         this.length--
 
         // If it's the first node
-        if (curr === this.head) {
+        if(curr === this.head) {
           // If there's only one entry
-          if (!this.head.next) {
-            this.head = this.tail = null
+          if(!this.head.next) {
+            this.head = this.tail = null            
           } else {
             this.head = this.head.next
           }
         }
 
         // If it's the tail and not the head
-        else if (curr === this.tail && curr !== this.head) {
+        else if(curr === this.tail && curr !== this.head) {
           prev.next = null
           this.tail = prev
           curr = null
         }
 
         // If it's not the tail or the head
-        else if (curr !== this.head && curr !== this.tail) {
+        else if(curr !== this.head && curr !== this.tail) {
           prev.next = curr.next
           curr = curr.next
         }
@@ -97,16 +97,10 @@ class Queue {
       // Keep track of previous node
       prev = curr
       // Next node if curr is still not null
-      if (curr) curr = curr.next
+      if(curr) curr = curr.next
     }
     return result
   }
 }
 
-const red = new Queue()
-const yellow = new Queue()
-const green = new Queue()
-
-const myQueue = { red, yellow, green }
-
-module.exports = myQueue
+module.exports = Queue
