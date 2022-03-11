@@ -36,9 +36,16 @@ module.exports = {
     this.checks(value.id, targetQueue)
     return this.queues[targetQueue].enqueue(value)
   },
-  dequeueItem(value, targetQueue) {
-    this.checks(value, targetQueue)
-    return this.queues[targetQueue].dequeue(value)
+  dequeueItem() {
+    let result = null
+    if(this.queues['red'].head) {
+      result = this.queues['red'].dequeue()
+    } else if (this.queues['yellow'].head) {
+      result = this.queues['yellow'].dequeue()
+    } else if (this.queues['green'].head) {
+      result = this.queues['green'].dequeue()
+    }
+    return result
   },
   print() {
     return {
