@@ -12,13 +12,22 @@ const healthyQueue = {
 }
 
 queue_routes.get('/queue', async (req, res) => {
-  res.status(200).send([healthyQueue])
+
+  let result = {
+    red: healthyQueue['red'].print(),
+    yellow: healthyQueue['yellow'].print(),
+    green: healthyQueue['green'].print(),
+  }
+
+  res.status(200).send(result)
 })
 
 queue_routes.post('/queue/enqueue', async (req, res) => {
   let priority = req.body.queue
   let patient = req.body.patient
   healthyQueue[priority].enqueue(patient)
+
+
   res.status(200).send(healthyQueue)
 })
 
