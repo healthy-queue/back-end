@@ -13,7 +13,7 @@ sanityRoutes.get('/welcome', async (req, res, next) => {
 })
 
 sanityRoutes.get('/bad', (req, res, next) => {
-  next("you've messed up")
+  next({ message: "you've messed up", hidden: 'Only visible in development'})
 })
 
 module.exports = sanityRoutes

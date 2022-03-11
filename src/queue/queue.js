@@ -20,6 +20,7 @@ class Queue {
 
   // O(1)
   enqueue(value) {
+    if(value.id === undefined) throw new Error("Nodes must have an id e.g. {id: 'uniqueId', ...}")
     const temp = new Node(value)
     if (!this.head) {
       this.head = this.tail = temp
@@ -58,15 +59,15 @@ class Queue {
   }
 
   // O(n)
-  removeNode(value) {
-    if (value === undefined) throw new Error('Value Required')
+  removeNode(id) {
+    if (id === undefined) throw new Error('Id Required')
     if (!this.head) return null // If nothing in queue return null
     let curr = this.head
     let prev = null
     let result = null
     while(curr) {
       // If node value is a match
-      if(curr.value === value) {
+      if(curr.value.id === id) {
         // Save value to result and decrement length
         result = curr.value
         this.length--

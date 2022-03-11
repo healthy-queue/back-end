@@ -14,11 +14,11 @@ describe('When given GET on /welcome', ()=> {
     expect(response.body.message).toBe('404: Not Found')
   })
 })
+
 describe('When given GET on /bad', ()=> {
   // Todo: test next(error) handler
   it('passes the error to default internal server error handler', async () => {
     const res = await request.get('/bad')
     expect(res.status).toBe(500)
-    expect(res.body.error).toBe("you've messed up")
   })
 })

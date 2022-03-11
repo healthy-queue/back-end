@@ -1,44 +1,33 @@
 const express = require('express')
 const queue_routes = express.Router()
-/* eslint-disable no-undef */
-const Queue = require('../queue/queue')
+const PriorityQueue = require('../queue/priority-queue.singleton')
 
-const red = new Queue()
-const yellow = new Queue()
-const green = new Queue()
-
-const healthyQueue = {
-  red, yellow, green
-}
-
-queue_routes.get('/queue', async (req, res) => {
-
-  let result = {
-    red: healthyQueue['red'].print(),
-    yellow: healthyQueue['yellow'].print(),
-    green: healthyQueue['green'].print(),
+queue_routes.get('/queue', async (req, res, next) => {
+  try {
+    res.status(200).send(PriorityQueue.print())
+  } catch (e) {
+    next(e)
   }
-
-  res.status(200).send(result)
 })
 
-queue_routes.post('/queue/enqueue', async (req, res) => {
-  let priority = req.body.queue
-  let patient = req.body.patient
-  healthyQueue[priority].enqueue(patient)
-
-
-  res.status(200).send(healthyQueue)
+queue_routes.post('/queue/enqueue', async (req, res, next) => {
+  try {
+    const { patient, priority } = req.body
+    PriorityQueue.enqueueItem(patient, priority)
+    // Todo: Dispatch the event to fetch queue here
+    res.status(201).send()
+  } catch (e) {
+    next(e)
+  }
 })
 
-queue_routes.post('/queue/dequeue', async (req, res) => {
-
-  let queue = req.body.queue
-  let dequeuedPatient = healthyQueue[queue].dequeue()
-  console.log(dequeuedPatient)
-  // here add dequeued patient to an ER board (in database)
-  // let acceptedPatient = erBoard.create(dequeuedPatient)
-  res.status(200).send(healthyQueue)
+queue_routes.post('/queue/dequeue', async (req, res, next) => {
+  try {
+    // Todo: Dispatch the event to fetch queue here
+    res.status(201).send(PriorityQueue.dequeueItem())
+  } catch (e) {
+    next(e)
+  }
 })
 
 module.exports = queue_routes
