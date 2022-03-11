@@ -20,6 +20,7 @@ class Queue {
 
   // O(1)
   enqueue(value) {
+    if(value.id === undefined) throw new Error("Nodes must have an id e.g. {id: 'uniqueId', ...}")
     const temp = new Node(value)
     if (!this.head) {
       this.head = this.tail = temp
@@ -59,7 +60,7 @@ class Queue {
 
   // O(n)
   removeNode(id) {
-    if (id === undefined) throw new Error('Value Required')
+    if (id === undefined) throw new Error('Id Required')
     if (!this.head) return null // If nothing in queue return null
     let curr = this.head
     let prev = null
