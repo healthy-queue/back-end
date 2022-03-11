@@ -8,12 +8,12 @@ describe('Internal Server Error Handling', () => {
   const env = process.env
 
   beforeEach(() => {
-      jest.resetModules()
-      process.env = { ...env }
+    jest.resetModules()
+    process.env = { ...env }
   })
 
   afterEach(() => {
-      process.env = env
+    process.env = env
   })
 
   it('should return entire error on development', async () => {
