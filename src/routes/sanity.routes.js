@@ -7,9 +7,7 @@ sanityRoutes.get('/welcome', async (req, res, next) => {
     const message = 'HOLA, Welcome to Healthy Queue 👋'
     res.status(200).send(message)
   } catch(e){
-    res.status(404).send({err: e.message})
-  } finally {
-    next()
+    next(e)
   }
 })
 
