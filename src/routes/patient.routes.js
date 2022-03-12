@@ -7,10 +7,8 @@ patientRoutes.get('/patients', async (req, res, next) => {
     const allPatients = await patients.findAll()
     res.status(200).send(allPatients)
   } catch(e) {
-    console.error(e.message)
-  } finally {
-    next()
-  }
+    next('Error loading all patients')
+  } 
 })
 
 patientRoutes.get('/patient/:id', async (req, res, next) => {
@@ -19,20 +17,18 @@ patientRoutes.get('/patient/:id', async (req, res, next) => {
     const targetPatient = await patients.findOne({ where:{ id }})
     res.status(200).send(targetPatient)
   } catch(e) {
-    console.error(e.message)
-  } finally {
-    next()
+    next('Error finding a patient by an id')
   }
 })
 
 patientRoutes.post('/patient', async (req, res, next) => {
   try{
     const newPatient = await patients.create(req.body)
+    req.io.emit('refetch patients')
     res.status(200).send(newPatient)
+    //TODO: emit event to all clients to re-fetch
   } catch(e) {
-    console.error(e.message)
-  } finally {
-    next()
+    next('Error adding a patient to the list of all patients')
   }
 })
 
@@ -40,11 +36,10 @@ patientRoutes.put('/patient/:id', async (req, res, next) => {
   try{
     const { id } = req.params
     const updatedPatient = await patients.update(req.body, { where:{ id }})
+    req.io.emit('refetch patients')
     res.status(200).send(updatedPatient)
   } catch(e) {
-    console.error(e.message)
-  } finally {
-    next()
+    next('Error finding a patient by an id')
   }
 })
 
@@ -53,11 +48,10 @@ patientRoutes.delete('/patient/:id', async (req, res, next) => {
   try{
     const { id } = req.params
     const numDeleted = await patients.destroy({ where:{ id }})
+    req.io.emit('refetch patients')
     res.status(204).send({ numDeleted })
-  } catch(e) { 
-    console.error(e.message)
-  } finally {
-    next()
+  } catch(e) {
+    next('Error deleting a patient by an ID')
   }
 })
 
