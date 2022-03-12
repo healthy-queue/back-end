@@ -33,7 +33,8 @@ queue_routes.post('/queue/dequeue', async (req, res, next) => {
 queue_routes.post('/queue/change-priority', async (req, res, next) => {
   try {
     const { id, priority, toTail } = req.body
-    res.status(204).send(PriorityQueue.changePriority(id, priority, boolean(toTail)))
+    toTail = toTail === undefined ? true : false
+    res.status(204).send(PriorityQueue.changePriority(id, priority, toTail))
   } catch (e) {
     next(e)
   }
