@@ -14,16 +14,35 @@ module.exports = {
     if(!Object.keys(this.queues).includes(targetQueue)) throw new Error('Not Valid Target Queue')
   },
   // Moves an element to the end or beginning of the target queue
-  changePriority(id, targetQueue, toTail = true) {
+  changePriority(id, targetQueue) {
     this.checks(id, targetQueue)
     if(this.queues['red'].length +  this.queues['yellow'].length + this.queues['green'].length === 0) {
       throw new Error('All Queues Empty')
     }
-    if(typeof toTail !== 'boolean') throw new Error('toTail should be a boolean')
+    let toTail
     for(const i in this.queues) {
       // Remove the item from queue it was previously in
-      let result = this.queues[i].removeNode(id) 
+      let result = this.queues[i].removeNode(id)
+      /* 
+        red -> yellow - toTail = true
+        yellow -> green - toTail = true
+        yellow -> red - toTail = false
+        green -> any - toTail = false
+      */
       if(result) {
+        switch(i) {
+          default: 
+            toTail = true
+          case 'red':
+            toTail = false
+            break
+          case 'yellow':
+            toTail = targetQueue === 'red' ? true : false
+            break
+          case 'green':
+            toTail = true
+            break
+        }
         if(toTail) {
           this.queues[targetQueue].enqueue(result) // Add the item to the end of the queue
         } else {
