@@ -13,7 +13,7 @@ describe('Given a Priority Queue', () => {
     })
 
     it('Then should throw error on changePriority when all queues are empty', () => {
-      expect(() => PriorityQueue.changePriority(0, 'red', true)).toThrow('All Queues Empty')
+      expect(() => PriorityQueue.changePriority(0, 'red')).toThrow('All Queues Empty')
     })
 
     it('Then should be able to enqueue an item to a specific queue', () => {
@@ -32,17 +32,13 @@ describe('Given a Priority Queue', () => {
 
   describe('When Populated', () => {
     it('Then should be able to move an item to the back of a specific queue', () => {
-      PriorityQueue.changePriority(2, 'red', true)
+      PriorityQueue.changePriority(2, 'red')
       expect(PriorityQueue.print()).toEqual({ red: [{ id: 1 }, { id: 2 }], yellow: [{ id: 0}, { id: 3 }], green: [{ id: 4 }] })
     })
 
     it('Then should be able to move an item to the front of a specific queue', () => {
-      PriorityQueue.changePriority(2, 'yellow', false)
+      PriorityQueue.changePriority(2, 'yellow')
       expect(PriorityQueue.print()).toEqual({ red: [{ id: 1 }], yellow: [{ id: 2}, { id: 0}, { id: 3 }], green: [{ id: 4 }] })
-    })
-
-    it('Then should throw error when toTail is not a boolean', () => {
-      expect(() => PriorityQueue.changePriority(2, 'yellow', NaN)).toThrow('toTail should be a boolean')
     })
 
     it('Then should throw error when targetQueue is not valid', () => {
