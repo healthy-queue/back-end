@@ -36,6 +36,7 @@ patientRoutes.put('/patient/:id', async (req, res, next) => {
   try{
     const { id } = req.params
     const updatedPatient = await patients.update(req.body, { where:{ id }})
+    req.io.emit('refetch patients')
     res.status(200).send(updatedPatient)
   } catch(e) {
     next('Error finding a patient by an id')
@@ -47,6 +48,7 @@ patientRoutes.delete('/patient/:id', async (req, res, next) => {
   try{
     const { id } = req.params
     const numDeleted = await patients.destroy({ where:{ id }})
+    req.io.emit('refetch patients')
     res.status(204).send({ numDeleted })
   } catch(e) {
     next('Error deleting a patient by an ID')
