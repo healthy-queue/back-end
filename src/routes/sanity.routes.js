@@ -3,6 +3,7 @@ const sanityRoutes = express.Router()
 
 sanityRoutes.get('/welcome', async (req, res, next) => {
   try{
+    req.io.emit('new-message', { content: 'HOLA, Welcome to Healthy Queue 👋' })
     const message = 'HOLA, Welcome to Healthy Queue 👋'
     res.status(200).send(message)
   } catch(e){

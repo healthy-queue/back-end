@@ -3,6 +3,8 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const app = express()
+const http = require('http').Server(app)
+const io = require('socket.io')(http, {cors:{origin: '*'}})
 
 const queue_routes = require('./routes/queue.routes')
 const patientRoutes = require('./routes/patient.routes')
@@ -16,6 +18,20 @@ const corsOptions = {
   optionSuccessStatus:200
 }
 
+// This should be removed before going into Dev
+app.get('/', function(req, res) {
+  res.sendFile('index.html', { root: '.' })
+})
+
+// This should be removed before going into Dev
+http.listen(3000, () => {
+  console.log('listening on *:3000')
+})
+
+app.use((req, res, next) => {
+  req.io = io
+  return next()
+})
 app.use(cors(corsOptions))
 app.use(express.json())
 app.use(queue_routes)
@@ -24,6 +40,7 @@ app.use(visitRoutes)
 app.use(sanityRoutes)
 app.use(serverErrorHandler)
 app.use('*', notFoundHandler)
+
 
 module.exports = {
   app,

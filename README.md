@@ -124,3 +124,7 @@ _This README was generated with ❤️ by [readme-md-generator](https://github.c
 [How to Mock process.env in Jest](https://www.webtips.dev/how-to-mock-processenv-in-jest)
 
 [Queue – Linked List Implementation](https://www.geeksforgeeks.org/queue-linked-list-implementation/)
+
+[Integrate Socket.IO with Node.Js + Express](https://medium.com/@raj_36650/integrate-socket-io-with-node-js-express-2292ca13d891)
+
+[How to pass socket.io to express routes in files?](https://aaryanadil.com/pass-socket-io-to-express-routes-in-files)
