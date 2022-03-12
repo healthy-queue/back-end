@@ -31,17 +31,18 @@ module.exports = {
       */
       if(result) {
         switch(i) {
-          default: 
-            toTail = true
-          case 'red':
-            toTail = false
-            break
-          case 'yellow':
-            toTail = targetQueue === 'red' ? true : false
-            break
-          case 'green':
-            toTail = true
-            break
+        default: 
+          toTail = true
+          break
+        case 'red':
+          toTail = false
+          break
+        case 'yellow':
+          toTail = targetQueue === 'red' ? true : false
+          break
+        case 'green':
+          toTail = true
+          break
         }
         if(toTail) {
           this.queues[targetQueue].enqueue(result) // Add the item to the end of the queue

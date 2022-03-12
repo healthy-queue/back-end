@@ -40,14 +40,6 @@ Patient_Info
 | id (uuid) | name (int) | DOB (bool) |  patient_id  | createdAt (date) | updatedAt (date) |
 |:---------:|:----------:|:----------:|:------------:|:----------------:|:----------------:|
 
-### Resources
-
-[sequelize-cli](https://sequelize.org/master/)
-
-### Attributions
-
-Express [500 Error Handler](https://expressjs.com/en/guide/error-handling.html)
-
 ### Install
 
 ```sh
@@ -62,29 +54,17 @@ Starting up our dev environment
 Setup your env variables
 `touch .env`
 
-CORS_ORIGIN=
-DATABASE_URL=
-DB_USERNAME=
-DB_PASSWORD=
-DB_DATABASE=
-DB_HOST=
-DB_DIALECT=
-DB_TEST_USERNAME=
-DB_TEST_PASSWORD=
-DB_TEST_DATABASE=
-DB_TEST_HOST=
-DB_TEST_DIALECT=
-PORT=
+```.env
+CORS_ORIGIN=http://localhost:3001
+DEV_DB_USERNAME=
+DEV_DB_PASSWORD=
+DATABASE_URL=postgres://localhost:5432/healthyq
+PORT=3001
+IO_PORT=8000
+```
 
 Preparing our Database with a Patients Table
-`npm run db:create` create a database called healthyq
-`npm run mig:all`  run all available migrations and create patient table in the db
-`npm run seed:dummy` add dummy patient into db patient table
-
-...if you have to undo a migration or seed file or check the state of a migration
-`npm run mig:stat` check current available migrations, up/down state
-`npm run mig:undo` undo last migration
-`npm run seed:undo` undo the current seed
+`npm run db:create` create a database called `healthyq`
 
 Querying our Database
 
@@ -109,13 +89,9 @@ Contributions, issues and feature requests are welcome!
 
 Feel free to check [issues page](https://github.com/healthy-queue/back-end/issues)
 
-## Show your support
+### Resources
 
-Give a ⭐️ if this project helped you!
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
-
+[sequelize-cli](https://sequelize.org/master/)
 
 ### Sources
 
@@ -128,3 +104,5 @@ _This README was generated with ❤️ by [readme-md-generator](https://github.c
 [Integrate Socket.IO with Node.Js + Express](https://medium.com/@raj_36650/integrate-socket-io-with-node-js-express-2292ca13d891)
 
 [How to pass socket.io to express routes in files?](https://aaryanadil.com/pass-socket-io-to-express-routes-in-files)
+
+[500 Error Handler](https://expressjs.com/en/guide/error-handling.html)

@@ -13,7 +13,6 @@ queue_routes.get('/queue', async (req, res, next) => {
 queue_routes.post('/queue/enqueue', async (req, res, next) => {
   try {
     const { patient, priority } = req.body
-    console.log(req.body)
     PriorityQueue.enqueueItem(patient, priority)
     // Todo: Dispatch the event to fetch queue here
     req.io.emit('refetch queue')
