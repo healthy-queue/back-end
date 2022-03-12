@@ -24,7 +24,16 @@ queue_routes.post('/queue/enqueue', async (req, res, next) => {
 queue_routes.post('/queue/dequeue', async (req, res, next) => {
   try {
     // Todo: Dispatch the event to fetch queue here
-    res.status(201).send(PriorityQueue.dequeueItem())
+    res.status(200).send(PriorityQueue.dequeueItem())
+  } catch (e) {
+    next(e)
+  }
+})
+
+queue_routes.post('/queue/change-priority', async (req, res, next) => {
+  try {
+    const { id, priority, toTail } = req.body
+    res.status(204).send(PriorityQueue.changePriority(id, priority, boolean(toTail)))
   } catch (e) {
     next(e)
   }
