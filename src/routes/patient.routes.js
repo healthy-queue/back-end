@@ -7,10 +7,8 @@ patientRoutes.get('/patients', async (req, res, next) => {
     const allPatients = await patients.findAll()
     res.status(200).send(allPatients)
   } catch(e) {
-    console.error(e.message)
-  } finally {
-    next()
-  }
+    next('Error loading all patients')
+  } 
 })
 
 patientRoutes.get('/patient/:id', async (req, res, next) => {
@@ -19,9 +17,7 @@ patientRoutes.get('/patient/:id', async (req, res, next) => {
     const targetPatient = await patients.findOne({ where:{ id }})
     res.status(200).send(targetPatient)
   } catch(e) {
-    console.error(e.message)
-  } finally {
-    next()
+    next('Error finding a patient by an id')
   }
 })
 
@@ -30,9 +26,7 @@ patientRoutes.post('/patient', async (req, res, next) => {
     const newPatient = await patients.create(req.body)
     res.status(200).send(newPatient)
   } catch(e) {
-    console.error(e.message)
-  } finally {
-    next()
+    next('Error adding a patient to the list of all patients')
   }
 })
 
@@ -42,9 +36,7 @@ patientRoutes.put('/patient/:id', async (req, res, next) => {
     const updatedPatient = await patients.update(req.body, { where:{ id }})
     res.status(200).send(updatedPatient)
   } catch(e) {
-    console.error(e.message)
-  } finally {
-    next()
+    next('Error finding a patient by an id')
   }
 })
 
@@ -54,10 +46,8 @@ patientRoutes.delete('/patient/:id', async (req, res, next) => {
     const { id } = req.params
     const numDeleted = await patients.destroy({ where:{ id }})
     res.status(204).send({ numDeleted })
-  } catch(e) { 
-    console.error(e.message)
-  } finally {
-    next()
+  } catch(e) {
+    next('Error deleting a patient by an ID')
   }
 })
 

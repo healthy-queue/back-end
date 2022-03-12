@@ -18,12 +18,12 @@ const patientModel = (sequelize, DataTypes) => {
     },
     phone_number: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true/* ,
       validate: {
         validate: {
           is: [/[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}/]
         }
-      }
+      } */
     },
     email_address: {
       type: DataTypes.STRING,
