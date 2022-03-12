@@ -24,7 +24,9 @@ patientRoutes.get('/patient/:id', async (req, res, next) => {
 patientRoutes.post('/patient', async (req, res, next) => {
   try{
     const newPatient = await patients.create(req.body)
+    req.io.emit('refetch patients')
     res.status(200).send(newPatient)
+    //TODO: emit event to all clients to re-fetch
   } catch(e) {
     next('Error adding a patient to the list of all patients')
   }

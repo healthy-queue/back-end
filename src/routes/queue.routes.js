@@ -16,6 +16,7 @@ queue_routes.post('/queue/enqueue', async (req, res, next) => {
     PriorityQueue.enqueueItem(patient, priority)
     // Todo: Dispatch the event to fetch queue here
     res.status(201).send()
+    
   } catch (e) {
     next(e)
   }
