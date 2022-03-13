@@ -5,7 +5,6 @@ const cors = require('cors')
 const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http, {cors:{origin: '*'}})
-// const IO_PORT = process.env.IO_PORT || 8000
 
 const queue_routes = require('./routes/queue.routes')
 const patientRoutes = require('./routes/patient.routes')
@@ -32,7 +31,6 @@ module.exports = {
   app,
   start: port => {
     if(!port){throw new Error('missing port')}
-    // app.listen(port, ()=> console.log(`server up at port:${ port }`))
     http.listen(port, () => console.log(`listening on *:${port}`))
   }
 }
