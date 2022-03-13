@@ -14,12 +14,12 @@ const visitModel = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: true,
     },
-    primary_aliment: {
+    primary_ailment: {
       type: DataTypes.STRING,
       allowedNull: true
     },
-    room: {
-      type: DataTypes.STRING,
+    notes: {
+      type: DataTypes.TEXT,
       allowNull: true,
     },
     createdAt: {
@@ -35,7 +35,6 @@ const visitModel = (sequelize, DataTypes) => {
     tableName: 'visit',
     freezeTableName: true
   })
-
   return visit
 }
 
