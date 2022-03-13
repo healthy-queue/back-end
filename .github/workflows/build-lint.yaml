@@ -31,6 +31,8 @@ jobs:
           npm test
         env:
           CI: true
+      - name: 'Upload to Codecov'
+        uses: codecov/codecov-action@v2
   eslint:
     runs-on: ubuntu-latest
     needs: [build]
