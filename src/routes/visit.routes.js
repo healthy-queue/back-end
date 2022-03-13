@@ -7,22 +7,17 @@ visitRoutes.get('/visits', async (req, res, next) => {
     const allVisits = await visits.findAll()
     res.status(200).send({ allVisits })
   } catch(e) {
-    console.error(e.message)
-  } finally {
-    next()
+    next(e)
   }
 })
 
-// todo
 visitRoutes.get('/visits/:patientId', async (req, res, next) => {
   try {
     const { patientId } = req.params
     const patientVisits = await visits.findAll({ where: { patient_id: patientId }})
     res.status(200).send({ patientVisits })
-  } catch (e) {
-    console.error(e.message) 
-  } finally {
-    next()
+  } catch(e) {
+    next(e)
   }
 })
 
@@ -32,9 +27,7 @@ visitRoutes.get('/visit/:id', async (req, res, next) => {
     const targetVisit = await visits.findOne({ where:{ id }})
     res.status(200).send({ targetVisit })
   } catch(e) {
-    console.error(e.message)
-  } finally {
-    next()
+    next(e)
   }
 })
 
@@ -46,10 +39,8 @@ visitRoutes.post('/visit', async (req, res, next) => {
     if(targetPatient === null) throw new Error('No Patient Found')
     const newVisit = await visits.create(req.body)
     res.status(200).send(newVisit)
-  } catch (e) {
-    console.error(e.message)
-  } finally {
-    next()
+  } catch(e) {
+    next(e)
   }
 })
 
@@ -58,10 +49,8 @@ visitRoutes.put('/visit/:id', async (req, res, next) => {
     const { id } = req.params
     const updatedVisit = await visits.update(req.body, { where: { id }})
     res.status(200).send({ updatedVisit })
-  } catch (e) {
-    console.error(e.message)
-  } finally {
-    next()
+  } catch(e) {
+    next(e)
   }
 })
 
@@ -71,10 +60,8 @@ visitRoutes.delete('/visit/:id', async (req, res, next) => {
     const { id } = req.params
     const numDeleted = await visits.destroy({ where:{ id }})
     res.status(200).send({ numDeleted })
-  } catch(e) { 
-    console.error(e.message)
-  } finally {
-    next()
+  } catch(e) {
+    next(e)
   }
 })
 
