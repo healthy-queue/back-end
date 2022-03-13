@@ -10,6 +10,7 @@ beforeAll( async () => {
       id: 1,
       first_name: 'Thor',
       last_name: 'Odinson',
+      enqueued: false,
       createdAt: new Date('2022-03-10T03:26:05.411Z'),
       updatedAt: new Date('2022-03-10T03:26:05.411Z')
     },
@@ -17,6 +18,7 @@ beforeAll( async () => {
       id: 2,
       first_name: 'Black',
       last_name: 'Widow',
+      enqueued: true,
       createdAt: new Date('2022-03-10T03:26:05.411Z'),
       updatedAt: new Date('2022-03-10T03:26:05.411Z')
     }
@@ -31,7 +33,7 @@ describe('When given GET on /patients', ()=> {
     const { id } = response.body[0]
     expect(response.status).toBe(200)
     expect(id).toBe(1)
-    expect(Object.keys(response.body[0]).length).toBe(10)
+    expect(Object.keys(response.body[0]).length).toBe(11)
     expect(Object.keys(response.body).length).toBe(2)
   })
 })
@@ -41,7 +43,7 @@ describe('When given GET on /patients/:id', ()=> {
     const { id } = response.body
     expect(response.status).toBe(200)
     expect(id).toBe(1)
-    expect(Object.keys(response.body).length).toBe(10)
+    expect(Object.keys(response.body).length).toBe(11)
   })
 })
 describe('When POST on /patient', ()=> {
@@ -53,10 +55,10 @@ describe('When POST on /patient', ()=> {
       createdAt: Date.now(),
       updatedAt: Date.now()
     }
-    const response = await request.post('/patient').send({...body})
+    const response = await request.post('/patient').send({...body, enqueued: false})
     expect(response.status).toBe(200)
     expect(response.body.id).toBe(3)
-    expect(Object.keys(response.body).length).toBe(5)
+    expect(Object.keys(response.body).length).toBe(6)
   })
 })
 describe('When PUT on /patient/:id', ()=> {

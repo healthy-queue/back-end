@@ -18,12 +18,15 @@ const patientModel = (sequelize, DataTypes) => {
     },
     phone_number: {
       type: DataTypes.STRING,
-      allowNull: true/* ,
+      allowNull: true,
       validate: {
-        validate: {
-          is: [/[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}/]
-        }
-      } */
+        is: [/(\+\d{1,3}\s?)?((\(\d{3}\)\s?)|(\d{3})(\s|-?))(\d{3}(\s|-?))(\d{4})(\s?(([E|e]xt[:|.|]?)|x|X)(\s?\d+))?/]
+      }
+    },
+    enqueued: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      default: false
     },
     email_address: {
       type: DataTypes.STRING,

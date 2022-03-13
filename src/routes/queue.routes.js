@@ -5,7 +5,7 @@ const PriorityQueue = require('../queue/priority-queue.singleton')
 queue_routes.get('/queue', async (req, res, next) => {
   try {
     res.status(200).send(PriorityQueue.print())
-  } catch (e) {
+  } catch(e) {
     next(e)
   }
 })
@@ -17,7 +17,7 @@ queue_routes.post('/queue/enqueue', async (req, res, next) => {
     // Todo: Dispatch the event to fetch queue here
     req.io.emit('refetch queue')
     res.status(201).send()
-  } catch (e) {
+  } catch(e) {
     next(e)
   }
 })
@@ -27,7 +27,7 @@ queue_routes.post('/queue/dequeue', async (req, res, next) => {
     // Todo: Dispatch the event to fetch queue here
     req.io.emit('refetch queue')
     res.status(200).send(PriorityQueue.dequeueItem())
-  } catch (e) {
+  } catch(e) {
     next(e)
   }
 })
@@ -37,7 +37,7 @@ queue_routes.post('/queue/change-priority', async (req, res, next) => {
     const { patient, priority } = req.body
     req.io.emit('refetch queue')
     res.status(204).send(PriorityQueue.changePriority(patient.id, priority))
-  } catch (e) {
+  } catch(e) {
     next(e)
   }
 })
