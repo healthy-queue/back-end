@@ -11,6 +11,7 @@ beforeAll( async () => {
       first_name: 'sally',
       last_name: 'slappy',
       date_of_birth: '2022-03-09T16:38:19.747Z',
+      enqueued: false,
       phone_number: '111-111-1111',
       email_address: 'fake@fake.com',
       insurance_carrier: 'Tricare',
@@ -25,7 +26,7 @@ beforeAll( async () => {
       patient_id: 1,
       admission_date: '2021-10-08T14:08:13.311Z',
       discharge_date: '2021-10-08T14:08:13.311Z',
-      primary_aliment: 'stomach ache',
+      primary_ailment: 'stomach ache',
       room: '2',
       createdAt: '2022-03-10T05:59:29.899Z',
       updatedAt: '2022-03-10T05:59:29.899Z'
@@ -35,7 +36,7 @@ beforeAll( async () => {
       patient_id: 1,
       admission_date: '2021-10-08T14:08:13.311Z',
       discharge_date: '2021-10-08T14:08:13.311Z',
-      primary_aliment: 'headache',
+      primary_ailment: 'headache',
       room: '1',
       createdAt: '2022-03-10T05:59:29.899Z',
       updatedAt: '2022-03-10T05:59:29.899Z'
@@ -45,7 +46,7 @@ beforeAll( async () => {
       patient_id: 2,
       admission_date: '2021-10-08T14:08:13.311Z',
       discharge_date: '2021-10-08T14:08:13.311Z',
-      primary_aliment: 'arthritis',
+      primary_ailment: 'arthritis',
       room: '3',
       createdAt: '2022-03-10T05:59:29.899Z',
       updatedAt: '2022-03-10T05:59:29.899Z'
@@ -64,7 +65,7 @@ describe('When given GET on /visits', ()=> {
         patient_id: 1,
         admission_date: '2021-10-08T14:08:13.311Z',
         discharge_date: '2021-10-08T14:08:13.311Z',
-        primary_aliment: 'stomach ache',
+        primary_ailment: 'stomach ache',
         room: '2',
         createdAt: '2022-03-10T05:59:29.899Z',
         updatedAt: '2022-03-10T05:59:29.899Z'
@@ -74,7 +75,7 @@ describe('When given GET on /visits', ()=> {
         patient_id: 1,
         admission_date: '2021-10-08T14:08:13.311Z',
         discharge_date: '2021-10-08T14:08:13.311Z',
-        primary_aliment: 'headache',
+        primary_ailment: 'headache',
         room: '1',
         createdAt: '2022-03-10T05:59:29.899Z',
         updatedAt: '2022-03-10T05:59:29.899Z'
@@ -84,7 +85,7 @@ describe('When given GET on /visits', ()=> {
         patient_id: 2,
         admission_date: '2021-10-08T14:08:13.311Z',
         discharge_date: '2021-10-08T14:08:13.311Z',
-        primary_aliment: 'arthritis',
+        primary_ailment: 'arthritis',
         room: '3',
         createdAt: '2022-03-10T05:59:29.899Z',
         updatedAt: '2022-03-10T05:59:29.899Z'
@@ -102,7 +103,7 @@ describe('When given GET on /visit/:id', ()=> {
         patient_id: 1,
         admission_date: '2021-10-08T14:08:13.311Z',
         discharge_date: '2021-10-08T14:08:13.311Z',
-        primary_aliment: 'stomach ache',
+        primary_ailment: 'stomach ache',
         room: '2',
         createdAt: '2022-03-10T05:59:29.899Z',
         updatedAt: '2022-03-10T05:59:29.899Z'
@@ -134,7 +135,7 @@ describe('When PUT on /visit/:id', ()=> {
       id: 1,
       patient_id : 1,
       admission_date: '2021-06-03T16:27:08.858Z',
-      primary_aliment: 'tummy ache',
+      primary_ailment: 'tummy ache',
       createdAt: '2021-06-03T16:27:08.858Z',
       updatedAt: '2021-06-03T16:27:08.858Z'
     }
