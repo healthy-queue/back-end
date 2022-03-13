@@ -28,6 +28,7 @@ beforeAll( async () => {
       discharge_date: '2021-10-08T14:08:13.311Z',
       primary_ailment: 'stomach ache',
       room: '2',
+      notes: null,
       createdAt: '2022-03-10T05:59:29.899Z',
       updatedAt: '2022-03-10T05:59:29.899Z'
     },
@@ -38,6 +39,7 @@ beforeAll( async () => {
       discharge_date: '2021-10-08T14:08:13.311Z',
       primary_ailment: 'headache',
       room: '1',
+      notes: null,
       createdAt: '2022-03-10T05:59:29.899Z',
       updatedAt: '2022-03-10T05:59:29.899Z'
     },
@@ -48,6 +50,7 @@ beforeAll( async () => {
       discharge_date: '2021-10-08T14:08:13.311Z',
       primary_ailment: 'arthritis',
       room: '3',
+      notes: 'Patient is stable',
       createdAt: '2022-03-10T05:59:29.899Z',
       updatedAt: '2022-03-10T05:59:29.899Z'
     }
@@ -67,6 +70,7 @@ describe('When given GET on /visits', ()=> {
         discharge_date: '2021-10-08T14:08:13.311Z',
         primary_ailment: 'stomach ache',
         room: '2',
+        notes: null,
         createdAt: '2022-03-10T05:59:29.899Z',
         updatedAt: '2022-03-10T05:59:29.899Z'
       },
@@ -77,6 +81,7 @@ describe('When given GET on /visits', ()=> {
         discharge_date: '2021-10-08T14:08:13.311Z',
         primary_ailment: 'headache',
         room: '1',
+        notes: null,
         createdAt: '2022-03-10T05:59:29.899Z',
         updatedAt: '2022-03-10T05:59:29.899Z'
       },
@@ -87,6 +92,7 @@ describe('When given GET on /visits', ()=> {
         discharge_date: '2021-10-08T14:08:13.311Z',
         primary_ailment: 'arthritis',
         room: '3',
+        notes: 'Patient is stable',
         createdAt: '2022-03-10T05:59:29.899Z',
         updatedAt: '2022-03-10T05:59:29.899Z'
       }
@@ -104,6 +110,7 @@ describe('When given GET on /visit/:id', ()=> {
         admission_date: '2021-10-08T14:08:13.311Z',
         discharge_date: '2021-10-08T14:08:13.311Z',
         primary_ailment: 'stomach ache',
+        notes: null,
         room: '2',
         createdAt: '2022-03-10T05:59:29.899Z',
         updatedAt: '2022-03-10T05:59:29.899Z'

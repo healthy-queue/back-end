@@ -22,6 +22,10 @@ const visitModel = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: true,
     },
+    room: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE
