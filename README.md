@@ -97,6 +97,8 @@ Feel free to check [issues page](https://github.com/healthy-queue/back-end/issue
 
 [Regex for Email Address](https://handyopinion.com/utility-method-to-get-all-email-addresses-from-a-string-in-java/)
 
+[Regex for Phone Number](https://stackoverflow.com/a/50122731/7967484)
+
 [How to Mock process.env in Jest](https://www.webtips.dev/how-to-mock-processenv-in-jest)
 
 [Queue – Linked List Implementation](https://www.geeksforgeeks.org/queue-linked-list-implementation/)
@@ -106,3 +108,5 @@ Feel free to check [issues page](https://github.com/healthy-queue/back-end/issue
 [How to pass socket.io to express routes in files?](https://aaryanadil.com/pass-socket-io-to-express-routes-in-files)
 
 [500 Error Handler](https://expressjs.com/en/guide/error-handling.html)
+
+[[Resolve PSQL error (Mac)] 5: Input/output error Error: Failure while executing; `/bin/launchctl bootstrap gui/502...](https://stackoverflow.com/a/69193903/7967484)
