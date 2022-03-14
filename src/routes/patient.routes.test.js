@@ -55,10 +55,10 @@ describe('When POST on /patient', ()=> {
       createdAt: Date.now(),
       updatedAt: Date.now()
     }
-    const response = await request.post('/patient').send({...body, enqueued: false})
+    const response = await request.post('/patient').send(body)
     expect(response.status).toBe(200)
     expect(response.body.id).toBe(3)
-    expect(Object.keys(response.body).length).toBe(6)
+    expect(Object.keys(response.body).length).toBe(5)
   })
 })
 describe('When PUT on /patient/:id', ()=> {
@@ -70,7 +70,7 @@ describe('When PUT on /patient/:id', ()=> {
       createdAt: Date.now(),
       updatedAt: Date.now()
     }
-    const response = await request.put('/patient/1').send({...body})
+    const response = await request.put('/patient/1').send(body)
     expect(response.status).toBe(200)
     expect(response.body[0]).toBe(1)
   })

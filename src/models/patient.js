@@ -25,7 +25,7 @@ const patientModel = (sequelize, DataTypes) => {
     },
     enqueued: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      allowNull: true,
       default: false
     },
     email_address: {
