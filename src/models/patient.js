@@ -60,6 +60,9 @@ const patientModel = (sequelize, DataTypes) => {
     user.enqueued = false
   })
 
+  // If our server goes down clear set enqueued to false for all
+  patient.update({enqueued: false}, { where: {enqueued: true}})
+
   return patient
 }
 
