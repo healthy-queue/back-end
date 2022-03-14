@@ -25,8 +25,7 @@ const patientModel = (sequelize, DataTypes) => {
     },
     enqueued: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
-      default: false
+      allowNull: true
     },
     email_address: {
       type: DataTypes.STRING,
@@ -55,6 +54,10 @@ const patientModel = (sequelize, DataTypes) => {
     timestamps:true,
     tableName: 'patient',
     freezeTableName:true
+  })
+
+  patient.beforeCreate(user => {
+    user.enqueued = false
   })
 
   return patient
