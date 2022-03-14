@@ -58,7 +58,8 @@ describe('When POST on /patient', ()=> {
     const response = await request.post('/patient').send(body)
     expect(response.status).toBe(200)
     expect(response.body.id).toBe(3)
-    expect(Object.keys(response.body).length).toBe(5)
+    expect(response.body.enqueued).toBe(false)
+    expect(Object.keys(response.body).length).toBe(6)
   })
 })
 describe('When PUT on /patient/:id', ()=> {
